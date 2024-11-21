@@ -54,10 +54,10 @@ class Game:
                 self.S = 0
                 self.I = 0
                 while self.I < A + B + 1:
-                    V = int(input("GUESS: "))
+                    V = int(input("GUESS? "))
                     if V == 0:
                         for x in H:
-                            print(f"{x[0]},{x[1]}={x[2]}")
+                            print(f" {x[0]} , {x[1]} = {x[2]}")
                         continue
                     elif V == 1:
                         self.I = A - 1 + B + 1
@@ -74,10 +74,23 @@ class Game:
 
                     self.I += 1
 
-                    F1 = sum(1 for x in range(A) if M[x] == self.T[x])
-                    F2 = sum(1 for x in range(A) for y in range(A) if M[x] == self.T[y] and x != y and M[x] != self.T[x])
+                    F1 = 0
+                    F2 = 0
+                    used_values = []
+                    for x in range(A):
+                        if M[x] == self.T[x]:
+                            F1 += 1
+                        else:
+                            for y in range(A):
+                                if M[x] == self.T[y] and x != y and not M[x] in used_values:
+                                    used_values.append(M[x])
+                                    F2 += 1
+                                    break
 
-                    print(f"{F1},{F2}")
+                    # F1 = sum(1 for x in range(A) if M[x] == self.T[x])
+                    # F2 = sum(1 for x in range(A) for y in range(A) if M[x] == self.T[y] and x != y and M[x] != self.T[x])
+
+                    print(f" {F1} , {F2}")
                     H.append((F1, F2, V))
 
                     if F1 == A:
