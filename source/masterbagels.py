@@ -7,6 +7,7 @@ class Game:
         self.I = 0 # num of cur tries
         self.N = 0 # num of games
 
+
     async def start(self):
         print(" " * 23 + "MASTERBAGELS")
         print(" " * 20 + "CREATIVE COMPUTING")
@@ -54,9 +55,11 @@ class Game:
                 H = []
                 self.S = 0
                 self.I = 0
+                guess = "GUESS? "
                 while self.I < A + B + 1:
-                    V = int(await prompt("GUESS? "))
+                    V = await get_valid_input(guess)
                     if V == 0:
+                        guess = "GUESS? "
                         if len(H) == 0:
                             print(" 0 , 0 = 0 ")
                         else:
@@ -69,6 +72,9 @@ class Game:
                         break
                     elif V == 2:
                         return
+                    elif not V:
+                        guess = "? "
+                        continue
 
                     M = [int(d) for d in str(V).zfill(A)]
 
@@ -125,8 +131,10 @@ async def get_valid_input(text):
     while True:
         user_input = await prompt(text)
         if user_input and user_input[0].isdigit():
-            return int(user_input[0])  # Возвращаем первый символ, если он цифра
-        print('!NUMBER EXPECTED - RETRY INPUT LINE')
+            return int(user_input)
+        else:
+            print('!NUMBER EXPECTED - RETRY INPUT LINE')
+            return ''
 
 
 async def main():
