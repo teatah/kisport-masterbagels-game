@@ -17,6 +17,6 @@ os.makedirs(output_directory, exist_ok=True)
 
 os.makedirs(web_directory, exist_ok=True)
 
-web_path = web_directory + WEB_OUTPUT
+web_path = os.path.join(web_directory, WEB_OUTPUT)
 open(web_path, 'w').write(out_text)
 webbrowser.open(web_path)
