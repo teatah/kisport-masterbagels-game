@@ -27,17 +27,17 @@ CLEANING_FILE=clean.py
 all: windows linux web
 
 windows:
-	pip install -r requirements.txt
+	@pip install -r requirements.txt
 	@echo "Building for Windows..."
-	$(PYINSTALLER) $(WINDOWS_OPTIONS) $(WINDOWS_SOURCE) --distpath $(WINDOWS_OUTPUT)
-	$(WINDOWS_OUTPUT)\$(GAME_CONSOLE).exe
+	@$(PYINSTALLER) $(WINDOWS_OPTIONS) $(WINDOWS_SOURCE) --distpath $(WINDOWS_OUTPUT)
+	@$(WINDOWS_OUTPUT)\$(GAME_CONSOLE).exe
 
 web:
-	@echo "Building for web..."
-	$(PYTHON) $(WEB_SCRIPT) $(WEB_SOURCE) $(WEB_TEMPLATE) $(WEB_OUTPUT)
+	@echo Building for web...
+	@$(PYTHON) $(WEB_SCRIPT) $(WEB_SOURCE) $(WEB_TEMPLATE) $(WEB_OUTPUT)
 
 linux:
-	@echo "Building for Linux..."
+	@echo Building for Linux...
 	@rm -rf /tmp/_MEI*
 	@apt install -y $(PYTHON) $(PYTHON)-pip
 	@$(PYTHON) -m pip install --upgrade pip
@@ -46,7 +46,7 @@ linux:
 	@sudo $(LINUX_OUTPUT)/$(GAME_CONSOLE)
 
 clean:
-	@echo "Cleaning..."
-	$(PYTHON) $(CLEANING_FILE)
+	@echo Cleaning...
+	@$(PYTHON) $(CLEANING_FILE)
 
 .PHONY: all windows linux web clean
