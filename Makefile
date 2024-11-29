@@ -5,7 +5,7 @@ GAME_CONSOLE=$(GAME_NAME)$(CONSOLE_PATH)
 ifeq ($(OS),Windows_NT)
     PYTHON=python
     WINDOWS_SOURCE=.\source\$(GAME_CONSOLE).py
-    WEB_SCRIPT=build_web.py
+    WEB_SCRIPT=.\source\web\build_web.py
     WEB_SOURCE=.\source\$(GAME_NAME).py
     WEB_TEMPLATE=.\source\web\index.html
     WEB_OUTPUT=.\\artifact.html
@@ -13,7 +13,7 @@ ifeq ($(OS),Windows_NT)
 else
     PYTHON=python3
     LINUX_SOURCE=`pwd`/source/$(GAME_CONSOLE).py
-    WEB_SCRIPT=build_web.py
+    WEB_SCRIPT=./source/web/build_web.py
     WEB_SOURCE=./source/$(GAME_NAME).py
     WEB_TEMPLATE=./source/web/index.html
     WEB_OUTPUT=./artifact.html

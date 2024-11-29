@@ -10,7 +10,7 @@ script = open(WEB_SOURCE).read()
 tpl = open(WEB_TEMPLATE).read()
 out_text = tpl.format(script=script)
 
-output_directory = os.path.join('.', 'output')
+output_directory = os.path.join('../..', 'output')
 web_directory = os.path.join(output_directory, 'web')
 
 os.makedirs(output_directory, exist_ok=True)
