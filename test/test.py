@@ -30,7 +30,6 @@ async def a_expect(proc, pattern):
 
         char = await proc.stdout.read(1)
         buffer += char.decode()
-        print(buffer)
 
 
 def expect(proc, pattern):
@@ -41,7 +40,6 @@ def expect(proc, pattern):
             return True, buffer
         char = proc.stdout.read(1).decode()
         buffer += char
-        print(buffer)
 
 
 async def a_write(proc, text):
