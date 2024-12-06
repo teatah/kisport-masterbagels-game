@@ -40,7 +40,7 @@ linux:
 	@echo Building for Linux...
 	@rm -rf /tmp/_MEI*
 	@apt install -y $(PYTHON) $(PYTHON)-pip
-	@$(PYTHON) -m pip install --upgrade pip
+	# @$(PYTHON) -m pip install --upgrade pip
 	@pip install --break-system-packages -r requirements.txt
 	@$(PYINSTALLER) $(LINUX_OPTIONS) $(LINUX_SOURCE) --distpath $(LINUX_OUTPUT)
 	@sudo $(LINUX_OUTPUT)/$(GAME_CONSOLE)
